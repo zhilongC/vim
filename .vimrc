@@ -9,7 +9,6 @@ set sm
 set selection=inclusive
 set wildmenu
 set mousemodel=popup
-
 au FileType php setlocal dict+=~/.vim/dict/php_funclist.dict
 au FileType css setlocal dict+=~/.vim/dict/css.dict
 au FileType c setlocal dict+=~/.vim/dict/c.dict
@@ -18,7 +17,6 @@ au FileType scale setlocal dict+=~/.vim/dict/scale.dict
 au FileType javascript setlocal dict+=~/.vim/dict/javascript.dict
 au FileType html setlocal dict+=~/.vim/dict/javascript.dict
 au FileType html setlocal dict+=~/.vim/dict/css.dict
-
 "
 "syntastic相关
 execute pathogen#infect()
@@ -91,13 +89,8 @@ set viminfo+=!
 " 带有如下符号的单词不要被换行分割
 set iskeyword+=_,$,@,%,#,-
 " 字符间插入的像素行数目
-
-
 "将tab替换为空格
 nmap tt :%s/\t/    /g<CR>
-
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""新文件标题
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -113,12 +106,10 @@ func SetTitle()
         call setline(1,"#!/usr/bin/env python")
         call append(line("."),"# coding=utf-8")
         call append(line(".")+1, "") 
-
     elseif &filetype == 'ruby'
         call setline(1,"#!/usr/bin/env ruby")
         call append(line("."),"# encoding: utf-8")
         call append(line(".")+1, "")
-
         "    elseif &filetype == 'mkd'
         "        call setline(1,"<head><meta charset=\"UTF-8\"></head>")
     else 
@@ -151,19 +142,17 @@ func SetTitle()
     "新建文件后，自动定位到文件末尾
 endfunc 
 autocmd BufNewFile * normal G
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "键盘命令
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-:nmap <silent> <F12> <ESC>:TlistToggle<RETURN>
+:nmap <silent> <F2> <ESC>:TlistToggle<RETURN>
 " shift tab pages
-map <S-Left> :tabp<CR>
-map <S-Right> :tabn<CR>
+map <F7> :tabp<CR>
+map <F8> :tabn<CR>
 map! <C-Z> <Esc>zzi
 map! <C-O> <C-Y>,
 map <C-A> ggVG$"+y
-map <F9> gg=G
+"map <F9> gg=G
 map <C-w> <C-w>w
 imap <C-k> <C-y>,
 imap <C-t> <C-q><TAB>
@@ -177,7 +166,7 @@ vmap <C-c> "+y
 set mouse=v
 "set clipboard=unnamed
 "去空行  
-nnoremap <F2> :g/^\s*$/d<CR> 
+nnoremap <F12> :g/^\s*$/d<CR> 
 "比较文件  
 nnoremap <C-F2> :vert diffsplit 
 "nnoremap <Leader>fu :CtrlPFunky<Cr>
@@ -216,18 +205,14 @@ func! CompileRunGcc()
     endif
 endfunc
 "C,C++的调试
-map <F8> :call Rungdb()<CR>
+map <F6> :call Rungdb()<CR>
 func! Rungdb()
     exec "w"
     exec "!g++ % -g -o %<"
     exec "!gdb ./%<"
 endfunc
-
-
 "代码格式优化化
-
-map <F6> :call FormartSrc()<CR><CR>
-
+map <F9> :call FormartSrc()<CR><CR>
 "定义FormartSrc()
 func FormartSrc()
     exec "w"
@@ -252,8 +237,6 @@ func FormartSrc()
     exec "e! %"
 endfunc
 "结束定义FormartSrc
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""实用设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -267,7 +250,6 @@ endif
 autocmd vimenter * if !argc() | NERDTree | endif
 " 只剩 NERDTree时自动关闭
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
 " 设置当文件被改动时自动载入
 set autoread
 " quickfix模式
@@ -299,10 +281,6 @@ set nobackup
 set noswapfile
 "搜索忽略大小写
 set ignorecase
-
-
-
-
 set linespace=0
 " 增强模式中的命令行自动完成操作
 set wildmenu
@@ -357,8 +335,6 @@ let Tlist_Exist_OnlyWindow = 1  " 如果只有一个buffer，kill窗口也kill�
 "设置tags  
 set tags=tags;  
 set autochdir 
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "其他东东
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -378,7 +354,6 @@ let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1  
 nmap tl :Tlist<cr>
-
 "python补全
 let g:pydiction_location = '~/.vim/after/complete-dict'
 let g:pydiction_menu_height = 20
@@ -387,26 +362,18 @@ let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
-
-
 set iskeyword+=.
 set termencoding=utf-8
 set encoding=utf8
 set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
-
 autocmd FileType python set omnifunc=pythoncomplete#Complete
-
 "set nocompatible               " be iMproved
 "filetype off                   " required!
-
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-
 " let Vundle manage Vundle
 " required! 
-
 Bundle 'gmarik/vundle'
-
 " My Bundles here:
 "
 " original repos on github
@@ -442,21 +409,16 @@ Bundle 'The-NERD-Commenter'
 "django
 "Bundle 'django_templates.vim'
 "Bundle 'Django-Projects'
-
 "Bundle 'FredKSchott/CoVim'
 "Bundle 'djangojump'
 " ...
 "let g:html_indent_inctags = "html,body,head,tbody"
 "let g:html_indent_script1 = "inc"
 "let g:html_indent_style1 = "inc"
-
 filetype plugin indent on     " required!
-
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.png,*.jpg,*.gif     " MacOSX/Linux
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.pyc,*.png,*.jpg,*.gif  " Windows
-
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = '\v\.(exe|so|dll)$'
 let g:ctrlp_extensions = ['funky']
-
 let NERDTreeIgnore=['\.pyc']
