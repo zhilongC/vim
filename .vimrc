@@ -67,7 +67,7 @@ set expandtab
 " 在行和段开始处使用制表符
 set smarttab
 " 显示行号
-set number
+"set number
 " 历史记录数
 set history=1000
 "搜索逐字符高亮
@@ -115,8 +115,8 @@ func SetTitle()
     else 
         call setline(1, "/*************************************************************************") 
         call append(line("."), "line> File Name: ".expand("%")) 
-        call append(line(".")+1, "line> Author: ") 
-        call append(line(".")+2, "line> Mail: ") 
+        call append(line(".")+1, "line> Author: zhilong") 
+        call append(line(".")+2, "line> Description: ") 
         call append(line(".")+3, "line> Created Time: ".strftime("%c")) 
         call append(line(".")+4, " ************************************************************************/") 
         call append(line(".")+5, "")
@@ -378,8 +378,8 @@ Bundle 'gmarik/vundle'
 "
 " original repos on github
 Bundle 'tpope/vim-fugitive'
-Bundle 'Yggdroot/indentLine'
-let g:indentLine_char = '┊'
+"Bundle 'Yggdroot/indentLine'
+"let g:indentLine_char = '┊'
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'Auto-Pairs'
